@@ -17,6 +17,7 @@
 
 @implementation IBAFormDataSource
 
+@synthesize delegate;
 @synthesize name = name_;
 @synthesize sections = sections_;
 @synthesize model = model_;
@@ -193,10 +194,12 @@
 
 #pragma mark -
 #pragma mark IBAFormModelManager
+
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
 	[self.model setValue:value forKeyPath:keyPath];
+	
+	[delegate formDataSource:self modelDidUpdate:self.model];
 }
-
 
 - (id)modelValueForKeyPath:(NSString *)keyPath {
 	return [self.model valueForKeyPath:keyPath];
