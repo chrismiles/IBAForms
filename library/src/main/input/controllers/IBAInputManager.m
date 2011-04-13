@@ -176,12 +176,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 - (BOOL)activateNextInputRequestor {
 	NSAssert(self.inputRequestorDataSource != nil, @"inputRequestorDataSource has not been set");
-	return [self activateInputRequestor:[self.inputRequestorDataSource nextInputRequestor:self.activeInputRequestor]];
+	id<IBAInputRequestor>inputRequestor = [self.inputRequestorDataSource nextInputRequestor:self.activeInputRequestor];
+	if (inputRequestor) {
+		return [self activateInputRequestor:inputRequestor];
+	}
+	
+	[self deactivateActiveInputRequestor];
+	return NO;
 }
 
 - (BOOL)activatePreviousInputRequestor {
 	NSAssert(self.inputRequestorDataSource != nil, @"inputRequestorDataSource has not been set");
-	return [self activateInputRequestor:[self.inputRequestorDataSource previousInputRequestor:self.activeInputRequestor]];
+	id<IBAInputRequestor>inputRequestor = [self.inputRequestorDataSource previousInputRequestor:self.activeInputRequestor];
+	if (inputRequestor) {
+		return [self activateInputRequestor:inputRequestor];
+	}
+	
+	[self deactivateActiveInputRequestor];
+	return NO;
 }
 
 - (BOOL)activateInputRequestor:(id<IBAInputRequestor>)inputRequestor {
