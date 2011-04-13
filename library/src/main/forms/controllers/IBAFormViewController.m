@@ -67,6 +67,7 @@
 
 - (void)registerForNotifications {
 	[self registerSelector:@selector(inputManagerWillShow:) withNotification:UIKeyboardWillShowNotification];
+	[self registerSelector:@selector(inputManagerWillHide:) withNotification:UIKeyboardWillHideNotification];
 	[self registerSelector:@selector(inputManagerDidHide:) withNotification:UIKeyboardDidHideNotification];
 
 	[self registerSelector:@selector(formFieldActivated:) withNotification:IBAInputRequestorFormFieldActivated];
@@ -216,6 +217,10 @@
 	NSDictionary* info = [notification userInfo];
 	CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
 	[self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
+}
+
+- (void)inputManagerWillHide:(NSNotification *)notification {
+	[[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
