@@ -434,7 +434,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\nmkdir -p \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\nHEADER_SOURCE=\"${BUILT_PRODUCTS_DIR}/usr/local/include\"\nif [ ! -d \"${HEADER_SOURCE}\" ]\nthen\n    HEADER_SOURCE=\"${DSTROOT}/usr/local/include\"\nfi\ncp -rf \"$HEADER_SOURCE\"/* \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"";
+			shellScript = "exit 0\n#rm -rf \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\n#mkdir -p \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\n#HEADER_SOURCE=\"${BUILT_PRODUCTS_DIR}/usr/local/include\"\n#if [ ! -d \"${HEADER_SOURCE}\" ]\n#then\n#    HEADER_SOURCE=\"${DSTROOT}/usr/local/include\"\n#fi\n#cp -rf \"$HEADER_SOURCE\"/* \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -490,7 +490,9 @@
 				GCC_PREFIX_HEADER = IBAForms_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PRIVATE_HEADERS_FOLDER_PATH = IBAForms;
 				PRODUCT_NAME = IBAForms;
+				PUBLIC_HEADERS_FOLDER_PATH = IBAForms;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -506,7 +508,9 @@
 				GCC_PREFIX_HEADER = IBAForms_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PRIVATE_HEADERS_FOLDER_PATH = IBAForms;
 				PRODUCT_NAME = IBAForms;
+				PUBLIC_HEADERS_FOLDER_PATH = IBAForms;
 			};
 			name = Release;
 		};
