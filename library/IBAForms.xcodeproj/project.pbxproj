@@ -434,7 +434,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\nmkdir -p \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\ncp -rf \"$BUILT_PRODUCTS_DIR\"/usr/local/include/* \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"";
+			shellScript = "rm -rf \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\nmkdir -p \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\nHEADER_SOURCE=\"${BUILT_PRODUCTS_DIR}/usr/local/include\"\nif [ ! -d \"${HEADER_SOURCE}\" ]\nthen\n    HEADER_SOURCE=\"${DSTROOT}/usr/local/include\"\nfi\ncp -rf \"$HEADER_SOURCE\"/* \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
